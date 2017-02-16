@@ -11,8 +11,9 @@ import {
     Text,
     View
 } from 'react-native';
-import Header from './src/components/Header';
-import AlbumList from './src/components/AlbumList';
+// import Header from './src/components/Header';
+// import AlbumList from './src/components/AlbumList';
+import App from './src/app';
 
 // export default class albums extends Component {
 //   render() {
@@ -33,15 +34,14 @@ import AlbumList from './src/components/AlbumList';
 //   }
 // }
 
-const albums = () => {
-    return (
-        <View style={{ flex: 1 }}>
-            <Header>Albums</Header>
-            <AlbumList />
-            {/*<Text>Some Text Niket</Text>*/}
-        </View>
-    );
-};
+// const albums = () => {
+//     return (
+//         <View style={{ flex: 1 }}>
+//             <Header>Albums</Header>
+//             <AlbumList />
+//         </View>
+//     );
+// };
 
 const styles = StyleSheet.create({
     container: {
@@ -62,4 +62,4 @@ const styles = StyleSheet.create({
     },
 });
 
-AppRegistry.registerComponent('albums', () => albums);
+AppRegistry.registerComponent('albums', () => App);
