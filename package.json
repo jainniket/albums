@@ -4,12 +4,16 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "flow": "flow --show-all-errors"
   },
   "dependencies": {
     "firebase": "^3.6.9",
     "react": "~15.4.0-rc.4",
-    "react-native": "0.41.1"
+    "react-native": "0.41.1",
+    "react-native-router-flux": "^3.37.0",
+    "react-redux": "^5.0.2",
+    "redux": "^3.6.0"
   },
   "devDependencies": {
     "babel-jest": "18.0.0",

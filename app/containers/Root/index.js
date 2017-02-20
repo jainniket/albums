@@ -1,12 +1,17 @@
-import AlbumList from './components/AlbumList';
+import AlbumList from '../../components/AlbumList';
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { Header, Button, CardSection, Spinner } from './components/common';
+import Header from '../../components/Header';
+import Button from '../../components/Button';
+import CardSection from '../../components/CardSection';
+import Spinner from '../../components/Spinner';
 import firebase from 'firebase';
-import LoginForm from './components/LoginForm';
+import LoginForm from '../../components/LoginForm';
+import Albums from '../Albums'
 
-class App extends Component {
+class Root extends Component {
     state = { loggedIn: null };
+
     componentWillMount() {
         firebase.initializeApp({
             apiKey: "AIzaSyC1o1y2MXqCxFLcMNItidCTwNHhNqaOlzI",
@@ -16,30 +21,21 @@ class App extends Component {
             messagingSenderId: "370370756312"
         });
 
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                this.setState({ loggedIn: true });
-            } else {
-                this.setState({ loggedIn: false });
-            }
-        })
+        // firebase.auth().onAuthStateChanged((user) => {
+        //     if (user) {
+        //         this.setState({ loggedIn: true });
+        //     } else {
+        //         this.setState({ loggedIn: false });
+        //     }
+        // })
+        this.setState({ loggedIn: true });
     }
 
     renderContent() {
         switch (this.state.loggedIn) {
         case true:
             return (
-                <View style={{ flex: 1 }}>
-                    <View style={{ flex: 1 }}>
-                        <Header>Albums</Header>
-                        <AlbumList />
-                    </View>
-                    <CardSection>
-                        <Button onPress={()=>firebase.auth().signOut()}>
-                            Log Out
-                        </Button>
-                    </CardSection>
-                </View>
+                <Albums />
             );
         case false:
             return (
@@ -67,4 +63,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default Root;

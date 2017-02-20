@@ -30,4 +30,4 @@ const styles = {
     }
 };
 
-export { Header };
+export default Header;
