@@ -1,5 +1,5 @@
 /*
- * Root Actions
+ * Auth Actions
  *
  * Actions change things in your application
  * Since this boilerplate uses a uni-directional data flow, specifically redux,
@@ -16,12 +16,27 @@
  */
 
 import {
-    LOGIN_STATUS,
+    EMAIL_CHANGED,
+    PASSWORD_CHANGED,
+    PASSWORD_CLEAR,
 } from './constants';
 
-export function loginStatus(state) {
+export function emailChanged(email) {
     return {
-        type: LOGIN_STATUS,
-        payload: state,
+        type: EMAIL_CHANGED,
+        payload: email,
+    };
+}
+
+export function passwordChanged(password) {
+    return {
+        type: PASSWORD_CHANGED,
+        payload: password,
+    };
+}
+
+export function passwordClear() {
+    return {
+        type: PASSWORD_CLEAR,
     };
 }

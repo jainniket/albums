@@ -42,7 +42,7 @@ class Albums extends Component {
 
 const mapStateToProps = state => {
     return {
-        albums: state.albums
+        albums: state.albums.albums
     }
 };
 

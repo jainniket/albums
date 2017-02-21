@@ -3,8 +3,8 @@ import { View } from 'react-native';
 import Header from '../../components/Header';
 import Spinner from '../../components/Spinner';
 import firebase from 'firebase';
-import LoginForm from '../../components/LoginForm';
 import Albums from '../Albums'
+import Auth from '../Auth'
 import { loginStatus } from './actions'
 import { connect } from 'react-redux'
 
@@ -29,7 +29,6 @@ class Root extends Component {
     }
 
     renderContent() {
-        console.log('loginValue', this.props.login);
         switch (this.props.login) {
         case true:
             return (
@@ -39,7 +38,7 @@ class Root extends Component {
             return (
                 <View>
                     <Header>Authentication</Header>
-                    <LoginForm />
+                    <Auth />
                 </View>
             );
         default:
