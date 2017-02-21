@@ -1,6 +1,6 @@
-export function loggedIn(state) {
+export function loginStatus(state) {
     return {
-        type: 'login',
+        type: 'loginStatus',
         payload: state,
     };
 }

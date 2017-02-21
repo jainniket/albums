@@ -1,5 +1,6 @@
-import data from './albumList.json'
-
 export default (state = [], action) => {
-    return data;
+    if (action && action.type === 'ALBUM_LIST') {
+        return action.payload;
+    }
+    return state;
 };

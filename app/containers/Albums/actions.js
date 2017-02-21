@@ -1,5 +1,6 @@
-export const loggedIn = () => {
+export function albumList(data) {
     return {
-        type: 'select_library'
+        type: 'ALBUM_LIST',
+        payload: data,
     };
-};
+}

@@ -6,18 +6,19 @@ import CardSection from '../../components/CardSection';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
+import data from './albumList.json'
+import { albumList } from './actions'
 
 class Albums extends Component {
     componentWillMount() {
-        console.log('album', this.props.albums);
         fetch('https://rallycoding.herokuapp.com/api/music_albums.json')
             .then((response) => response.json())
             .then((responseJson) => {
-                this.setState({ albums: responseJson });
-                console.log(this.state.albums);
+                this.props.fecthAlbums(responseJson);
             })
             .catch((error) => {
-                console.error(error);
+                console.log(error);
+                this.props.fecthAlbums(data);
             });
     }
 
@@ -26,7 +27,8 @@ class Albums extends Component {
             <View style={{ flex: 1 }}>
                 <View style={{ flex: 1 }}>
                     <Header>Albums</Header>
-                    <AlbumList albums={this.props.albums}/>
+                    {console.log(this.props.albums)}
+                    <AlbumList albums={this.props.albums} />
                 </View>
                 <CardSection>
                     <Button onPress={()=>firebase.auth().signOut()}>
@@ -42,7 +44,13 @@ const mapStateToProps = state => {
     return {
         albums: state.albums
     }
-
 };
 
-export default connect(mapStateToProps)(Albums);
+function mapDispatchToProps(dispatch) {
+    return {
+        fecthAlbums: (data) => dispatch(albumList(data)),
+        dispatch,
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Albums);

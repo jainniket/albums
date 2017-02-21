@@ -1,4 +1,3 @@
-import AlbumList from '../../components/AlbumList';
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import Header from '../../components/Header';
@@ -6,14 +5,12 @@ import Spinner from '../../components/Spinner';
 import firebase from 'firebase';
 import LoginForm from '../../components/LoginForm';
 import Albums from '../Albums'
-import { loggedIn } from './actions'
+import { loginStatus } from './actions'
 import { connect } from 'react-redux'
 
 class Root extends Component {
-    state = { loggedIn: null };
 
     componentWillMount() {
-        console.log('login', this.props);
         firebase.initializeApp({
             apiKey: "AIzaSyC1o1y2MXqCxFLcMNItidCTwNHhNqaOlzI",
             authDomain: "authentication-30454.firebaseapp.com",
@@ -24,13 +21,11 @@ class Root extends Component {
 
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                this.props.loggedIn(true);
+                this.props.loginStatus(true);
             } else {
-                this.props.loggedIn(false);
+                this.props.loginStatus(false);
             }
         });
-        this.setState({ loggedIn: true });
-        // this.props.loggedIn(true);
     }
 
     renderContent() {
@@ -67,7 +62,6 @@ class Root extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log('state', state);
     return {
         login: state.root.login
     }
@@ -76,7 +70,7 @@ const mapStateToProps = state => {
 
 function mapDispatchToProps(dispatch) {
     return {
-        loggedIn: (state) => dispatch(loggedIn(state)),
+        loginStatus: (state) => dispatch(loginStatus(state)),
         dispatch,
     };
 }
