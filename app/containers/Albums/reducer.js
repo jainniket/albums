@@ -1,5 +1,5 @@
 import data from './albumList.json'
 
-export default () => [
-
-];
+export default (state = [], action) => {
+    return data;
+};
