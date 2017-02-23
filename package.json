@@ -13,7 +13,8 @@
     "react-native": "0.41.1",
     "react-native-router-flux": "^3.37.0",
     "react-redux": "^5.0.2",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "redux-saga": "^0.14.3"
   },
   "devDependencies": {
     "babel-jest": "18.0.0",

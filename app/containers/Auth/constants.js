@@ -12,3 +12,6 @@
 export const EMAIL_CHANGED = 'albums/Auth/EMAIL_CHANGED';
 export const PASSWORD_CHANGED = 'albums/Auth/PASSWORD_CHANGED';
 export const PASSWORD_CLEAR = 'albums/Auth/PASSWORD_CLEAR';
+export const USER_LOGIN_REQUESTED = 'albums/Auth/USER_LOGIN_REQUESTED';
+export const USER_LOGIN_SUCCEEDED = 'albums/Auth/USER_LOGIN_SUCCEEDED';
+export const USER_LOGIN_FAILED = 'albums/Auth/USER_LOGIN_FAILED';

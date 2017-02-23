@@ -5,6 +5,6 @@
  */
 
 import { AppRegistry } from 'react-native';
-import App from './app/containers/App/app';
+import App from './app/app';
 
 AppRegistry.registerComponent('albums', () => App);

@@ -19,6 +19,7 @@ import {
     EMAIL_CHANGED,
     PASSWORD_CHANGED,
     PASSWORD_CLEAR,
+    USER_LOGIN_REQUESTED,
 } from './constants';
 
 export function emailChanged(email) {
@@ -38,5 +39,12 @@ export function passwordChanged(password) {
 export function passwordClear() {
     return {
         type: PASSWORD_CLEAR,
+    };
+}
+
+export function loginUser(email, password) {
+    return {
+        type: USER_LOGIN_REQUESTED,
+        payload: { email, password },
     };
 }

@@ -9,4 +9,6 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const ALBUM_LIST = 'albums/Albums/ALBUM_LIST';
+export const ALBUMS_FETCH_SUCCEEDED = 'albums/Albums/ALBUMS_FETCH_SUCCEEDED';
+export const ALBUMS_FETCH_FAILED = 'albums/Albums/ALBUMS_FETCH_FAILED';
+export const ALBUMS_FETCH_REQUESTED = 'albums/Albums/ALBUMS_FETCH_REQUESTED';

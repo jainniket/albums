@@ -5,36 +5,18 @@ import Card from '../../components/Card';
 import CardSection from '../../components/CardSection';
 import Input from '../../components/Input';
 import Spinner from '../../components/Spinner';
-import firebase from 'firebase';
 import { connect } from 'react-redux';
-import { emailChanged, passwordChanged, passwordClear } from './actions'
+import { emailChanged, passwordChanged, passwordClear, loginUser } from './actions'
 
 class LoginForm extends Component {
 
-    state = { email: '', password: '', error: '', loading: false };
-
     onButtonPress() {
-        const { email, password } = this.props;
-        this.setState({ error: '', loading: true });
-        firebase.auth().signInWithEmailAndPassword(email, password)
-            .then(this.onLoginSuccess.bind(this))
-            .catch(() => {
-                firebase.auth().createUserWithEmailAndPassword(email, password)
-                    .then(this.onLoginSuccess.bind(this))
-                    .catch(this.onLoginFail.bind(this))
-            })
-    }
-
-    onLoginFail() {
-        this.props.passwordClear();
-    }
-
-    onLoginSuccess() {
-        this.props.passwordClear();
+        const { email, password, loginUser } = this.props;
+        loginUser(email, password);
     }
 
     renderButton() {
-        if (this.state.loading) {
+        if (this.props.loading) {
             return <Spinner size="small" />
         }
         return (
@@ -43,7 +25,6 @@ class LoginForm extends Component {
     }
 
     onEmailChange(text) {
-        console.log(text);
         this.props.emailChanged(text);
     }
 
@@ -74,7 +55,7 @@ class LoginForm extends Component {
                     />
                 </CardSection>
                 <Text style={styles.errorTextStyle}>
-                    {this.state.error}
+                    {this.props.error}
                 </Text>
                 <CardSection>
                     {this.renderButton()}
@@ -86,7 +67,7 @@ class LoginForm extends Component {
 
 const styles = {
     errorTextStyle: {
-        fontSize: 20,
+        fontSize: 12,
         alignSelf: 'center',
         color: 'red',
     }
@@ -96,6 +77,8 @@ const mapStateToProps = state => {
     return {
         email: state.auth.email,
         password: state.auth.password,
+        loading: state.auth.loading,
+        error: state.auth.error,
     }
 };
 
@@ -104,6 +87,7 @@ function mapDispatchToProps(dispatch) {
         emailChanged: (email) => dispatch(emailChanged(email)),
         passwordChanged: (password) => dispatch(passwordChanged(password)),
         passwordClear: () => dispatch(passwordClear()),
+        loginUser: (email, password) => dispatch(loginUser(email, password)),
         dispatch,
     };
 }

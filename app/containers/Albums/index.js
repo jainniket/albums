@@ -1,37 +1,46 @@
 import React, { Component } from 'react'
 import AlbumList from '../../components/AlbumList';
-import Header from '../../components/Header';
 import Button from '../../components/Button';
 import CardSection from '../../components/CardSection';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
-import data from './albumList.json'
-import { albumList } from './actions'
+import { fetchAlbum } from './actions'
+import { Actions } from 'react-native-router-flux'
+import Spinner from '../../components/Spinner';
 
 class Albums extends Component {
     componentWillMount() {
-        fetch('https://rallycoding.herokuapp.com/api/music_albums.json')
-            .then((response) => response.json())
-            .then((responseJson) => {
-                this.props.fecthAlbums(responseJson);
-            })
-            .catch((error) => {
-                console.log(error);
-                this.props.fecthAlbums(data);
-            });
+        this.props.fetchAlbums();
+    }
+
+    handleLogOut() {
+        firebase.auth().signOut();
+        Actions.auth();
+    }
+
+    renderAlbums() {
+        if (this.props.loading) {
+            return <Spinner size="large" />
+        } else if (this.props.error) {
+            return (<Text style={styles.errorTextStyle}>
+                {this.props.error}
+            </Text>);
+        } else {
+            return (
+                <AlbumList albums={this.props.albums} />
+            )
+        }
     }
 
     render() {
         return (
             <View style={{ flex: 1 }}>
                 <View style={{ flex: 1 }}>
-                    <Header>Albums</Header>
-                    {console.log(this.props.albums)}
-                    <AlbumList albums={this.props.albums} />
+                    {this.renderAlbums()}
                 </View>
                 <CardSection>
-                    <Button onPress={()=>firebase.auth().signOut()}>
+                    <Button onPress={this.handleLogOut}>
                         Log Out
                     </Button>
                 </CardSection>
@@ -42,13 +51,15 @@ class Albums extends Component {
 
 const mapStateToProps = state => {
     return {
-        albums: state.albums.albums
+        albums: state.albums.albums,
+        loading: state.albums.loading,
+        error: state.albums.error,
     }
 };
 
 function mapDispatchToProps(dispatch) {
     return {
-        fecthAlbums: (data) => dispatch(albumList(data)),
+        fetchAlbums: () => dispatch(fetchAlbum()),
         dispatch,
     };
 }
