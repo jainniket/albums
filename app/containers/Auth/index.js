@@ -7,6 +7,8 @@ import Input from '../../components/Input';
 import Spinner from '../../components/Spinner';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from './actions'
+import { createStructuredSelector } from 'reselect';
+import { selectEmail, selectError, selectLoading, selectPassword } from './selectors';
 
 class LoginForm extends Component {
 
@@ -16,6 +18,7 @@ class LoginForm extends Component {
   }
 
   renderButton() {
+    console.log(this.props.loading, this.props.error);
     if (this.props.loading) {
       return <Spinner size="small" />
     }
@@ -55,7 +58,7 @@ class LoginForm extends Component {
           />
         </CardSection>
         <Text style={styles.errorTextStyle}>
-          {this.props.error}
+          {this.props.error.message}
         </Text>
         <CardSection>
           {this.renderButton()}
@@ -73,14 +76,12 @@ const styles = {
   }
 };
 
-const mapStateToProps = state => {
-  return {
-    email: state.get('auth').email,
-    password: state.get('auth').password,
-    loading: state.get('auth').loading,
-    error: state.get('auth').error,
-  }
-};
+const mapStateToProps = createStructuredSelector({
+  email: selectEmail(),
+  password: selectPassword(),
+  loading: selectLoading(),
+  error: selectError(),
+});
 
 function mapDispatchToProps(dispatch) {
   return {

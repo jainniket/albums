@@ -138,6 +138,7 @@
     "redux": "^3.6.0",
     "redux-immutable": "^3.1.0",
     "redux-saga": "^0.14.3",
+    "reselect": "^2.5.4",
     "warning": "^3.0.0"
   },
   "devDependencies": {

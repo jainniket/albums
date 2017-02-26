@@ -19,7 +19,7 @@ import {
 } from './constants';
 
 const INITIAL_STATE = fromJS({
-  albums: [],
+  albumList: [],
   error: false,
   loading: false,
 });
@@ -28,7 +28,7 @@ function albumReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case ALBUMS_FETCH_SUCCEEDED:
       return state
-        .set('albums', action.albums)
+        .set('albumList', action.albums)
         .set('error', false)
         .set('loading', false);
     case ALBUMS_FETCH_FAILED:

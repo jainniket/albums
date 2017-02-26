@@ -31,14 +31,14 @@ const INITIAL_STATE = fromJS({
 function authReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case EMAIL_CHANGED:
-      // return { ...state, email: action.payload };
       return state
         .set('email', action.payload);
     case PASSWORD_CHANGED:
       return state
         .set('password', action.payload);
     case PASSWORD_CLEAR:
-      return { ...state, password: '' };
+      return state
+        .set('password', '');
     case USER_LOGIN_SUCCEEDED:
       return state
         .set('loading', false)
