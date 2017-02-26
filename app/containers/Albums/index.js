@@ -51,9 +51,9 @@ class Albums extends Component {
 
 const mapStateToProps = state => {
     return {
-        albums: state.albums.albums,
-        loading: state.albums.loading,
-        error: state.albums.error,
+        albums: state.get('albums').albums,
+        loading: state.get('albums').loading,
+        error: state.get('albums').error,
     }
 };
 

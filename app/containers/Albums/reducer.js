@@ -10,42 +10,38 @@
  *   return state.set('yourStateVariable', true);
  */
 
+import { fromJS } from 'immutable';
+
 import {
-    ALBUMS_FETCH_SUCCEEDED,
-    ALBUMS_FETCH_REQUESTED,
-    ALBUMS_FETCH_FAILED,
+  ALBUMS_FETCH_SUCCEEDED,
+  ALBUMS_FETCH_REQUESTED,
+  ALBUMS_FETCH_FAILED,
 } from './constants';
 
-const INITIAL_STATE = {
-    albums: [],
-    error: false,
-    loading: false,
-};
+const INITIAL_STATE = fromJS({
+  albums: [],
+  error: false,
+  loading: false,
+});
 
 function albumReducer(state = INITIAL_STATE, action) {
-    switch (action.type) {
-        case ALBUMS_FETCH_SUCCEEDED:
-            return {
-                ...state,
-                albums: action.albums,
-                error: false,
-                loading: false,
-            };
-        case ALBUMS_FETCH_FAILED:
-            return {
-                ...state,
-                error: action.error,
-                loading: false,
-            };
-        case ALBUMS_FETCH_REQUESTED:
-            return {
-                ...state,
-                error: false,
-                loading: true,
-            };
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case ALBUMS_FETCH_SUCCEEDED:
+      return state
+        .set('albums', action.albums)
+        .set('error', false)
+        .set('loading', false);
+    case ALBUMS_FETCH_FAILED:
+      return state
+        .set('error', action.error)
+        .set('loading', false);
+    case ALBUMS_FETCH_REQUESTED:
+      return state
+        .set('error', false)
+        .set('loading', true);
+    default:
+      return state;
+  }
 }
 
 export default albumReducer;

@@ -1,33 +1,38 @@
-import { combineReducers } from 'redux'
+// import { combineReducers } from 'redux'
+import { fromJS } from 'immutable'
+import { combineReducers } from 'redux-immutable';
 import RootReducer from './containers/Root/reducer'
 import AlbumReducer from './containers/Albums/reducer'
 import AuthReducer from './containers/Auth/reducer'
 
-const initialState = {
-    scene: {},
-};
+// const initialState = {
+//   scene: {},
+// };
 
-function routeReducer(state = initialState, action = {}) {
-    switch (action.type) {
-        // focus action is dispatched when a new screen comes into focus
+// Initial routing state
+const routeInitialState = fromJS({
+  locationBeforeTransitions: null,
+  scene: null,
+});
+
+/**
+ * Merge route into the global application state
+ */
+function routeReducer(state = routeInitialState, action) {
+  switch (action.type) {
     case "focus":
-        return {
-            ...state,
-            scene: action.scene,
-        };
-    case "replace":
-        return {
-            ...state,
-            scene: action.scene,
-        };
+      return state.merge({ scene: action.scene });
     default:
-        return state;
-    }
+      return state;
+  }
 }
 
-export default combineReducers({
+/**
+ * Creates the main reducer with the asynchronously loaded ones
+ */
+export default function createReducer(asyncReducers) {
+  return combineReducers({
     route: routeReducer,
-    root: RootReducer,
-    albums: AlbumReducer,
-    auth: AuthReducer,
-});
+    ...asyncReducers,
+  });
+}
