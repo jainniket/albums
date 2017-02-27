@@ -16,11 +16,11 @@
  */
 
 import {
-    ALBUMS_FETCH_REQUESTED,
+  ALBUMS_FETCH_REQUESTED,
 } from './constants';
 
 export function fetchAlbum() {
-    return {
-        type: ALBUMS_FETCH_REQUESTED,
-    };
+  return {
+    type: ALBUMS_FETCH_REQUESTED,
+  };
 }
