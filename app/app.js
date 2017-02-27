@@ -1,15 +1,14 @@
 // @flow
-// import 'babel-polyfill'
 
-import React, { Component } from 'react'
-import { View, StatusBar } from 'react-native'
-import Routes from './routes'
-import { Provider } from 'react-redux'
-import firebase from 'firebase'
-import configureStore from './store'
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import 'babel-polyfill';
+import { Provider } from 'react-redux';
+import firebase from 'firebase';
+import Routes from './routes';
+import configureStore from './store';
 
 // Needed for redux-saga es6 generator support
-import 'babel-polyfill';
 /**
  * Provides an entry point into our application.  Both index.ios.js and index.android.js
  * call this component first.
@@ -32,11 +31,11 @@ class App extends Component {
 
   componentWillMount() {
     firebase.initializeApp({
-      apiKey: "AIzaSyC1o1y2MXqCxFLcMNItidCTwNHhNqaOlzI",
-      authDomain: "authentication-30454.firebaseapp.com",
-      databaseURL: "https://authentication-30454.firebaseio.com",
-      storageBucket: "authentication-30454.appspot.com",
-      messagingSenderId: "370370756312"
+      apiKey: 'AIzaSyC1o1y2MXqCxFLcMNItidCTwNHhNqaOlzI',
+      authDomain: 'authentication-30454.firebaseapp.com',
+      databaseURL: 'https://authentication-30454.firebaseio.com',
+      storageBucket: 'authentication-30454.appspot.com',
+      messagingSenderId: '370370756312',
     });
   }
 
@@ -54,7 +53,7 @@ class App extends Component {
           <Routes store={store} />
         </View>
       </Provider>
-    )
+    );
   }
 }
 

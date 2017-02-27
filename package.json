@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "flow": "flow --show-all-errors"
+    "flow": "flow --show-all-errors",
+    "lint-staged": "lint-staged"
   },
   "lint-staged": {
     "*.js": "lint:eslint"
@@ -34,7 +35,7 @@
     "babel-core": "6.21.0",
     "babel-eslint": "^7.1.1",
     "babel-jest": "^18.0.0",
-    "babel-polyfill": "^6.9.0",
+    "babel-polyfill": "^6.23.0",
     "babel-preset-react": "6.16.0",
     "babel-preset-react-native": "^1.9.1",
     "eslint": "^3.16.1",
@@ -46,10 +47,10 @@
     "eslint-plugin-redux-saga": "^0.3.0",
     "jest": "18.1.0",
     "lint-staged": "^3.3.1",
+    "pre-commit": "^1.2.2",
     "react-test-renderer": "^15.4.2"
   },
   "jest": {
-    "preset": "react-native",
-    "setupFiles": ["./app/jest/setup.js"]
+    "preset": "react-native"
   }
 }
