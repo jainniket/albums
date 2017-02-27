@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
-import Button from '../../components/Button';
+import Custom from '../../components/Button';
 import Card from '../../components/Card';
 import CardSection from '../../components/CardSection';
 import Input from '../../components/Input';
 import Spinner from '../../components/Spinner';
 import { connect } from 'react-redux';
-import { emailChanged, passwordChanged, loginUser } from './actions'
+import { emailChanged, passwordChanged, loginUser } from './actions';
 import { createStructuredSelector } from 'reselect';
 import { selectEmail, selectError, selectLoading, selectPassword } from './selectors';
 
@@ -18,13 +18,11 @@ class LoginForm extends Component {
   }
 
   renderButton() {
-    console.log(this.props.loading, this.props.error);
     if (this.props.loading) {
-      return <Spinner size="small" />
+      return <Spinner size="small" />;
     }
-    return (
-      <Button onPress={this.onButtonPress.bind(this)}>Login</Button>
-    )
+
+    return (<Custom onPress={this.onButtonPress.bind(this)}>Login</Custom>);
   }
 
   onEmailChange(text) {
@@ -64,7 +62,7 @@ class LoginForm extends Component {
           {this.renderButton()}
         </CardSection>
       </Card>
-    )
+    );
   }
 }
 
@@ -73,7 +71,7 @@ const styles = {
     fontSize: 12,
     alignSelf: 'center',
     color: 'red',
-  }
+  },
 };
 
 const mapStateToProps = createStructuredSelector({

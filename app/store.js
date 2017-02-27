@@ -10,6 +10,7 @@ import createReducer from './reducers';
 const sagaMiddleware = createSagaMiddleware();
 
 export default function configureStore(initialState = {}, history) {
+  console.trace('ehhlloo');
 
   // Create the store with the middlewares
   // 1. sagaMiddleware: Makes redux-sagas work

@@ -1,9 +1,6 @@
 // import { combineReducers } from 'redux'
 import { fromJS } from 'immutable'
 import { combineReducers } from 'redux-immutable';
-import RootReducer from './containers/Root/reducer'
-import AlbumReducer from './containers/Albums/reducer'
-import AuthReducer from './containers/Auth/reducer'
 
 // const initialState = {
 //   scene: {},

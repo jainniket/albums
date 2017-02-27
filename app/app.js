@@ -5,12 +5,7 @@ import React, { Component } from 'react'
 import { View, StatusBar } from 'react-native'
 import Routes from './routes'
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
-import reducer from './reducers'
-import createSagaMiddleware from 'redux-saga'
 import firebase from 'firebase'
-import albumData from './containers/Albums/sagas'
-import authenticateUser from './containers/Auth/sagas'
 import configureStore from './store'
 
 // Needed for redux-saga es6 generator support
@@ -30,6 +25,9 @@ import 'babel-polyfill';
 // Optionally, this could be changed to leverage a created history
 // e.g. `const browserHistory = useRouterHistory(createBrowserHistory)();`
 
+const initialState = {};
+const store = configureStore(initialState);
+
 class App extends Component {
 
   componentWillMount() {
@@ -48,9 +46,6 @@ class App extends Component {
     // this uses the singleton browserHistory provided by react-router
     // Optionally, this could be changed to leverage a created history
     // e.g. `const browserHistory = useRouterHistory(createBrowserHistory)();`
-
-    const initialState = {};
-    const store = configureStore(initialState);
 
     return (
       <Provider store={store}>
