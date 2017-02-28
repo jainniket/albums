@@ -1,13 +1,4 @@
-import React from 'react';
-import { View } from 'react-native';
-
-const Card = (props) => (
-  <View style={styles.containerStyle}>
-    {props.children}
-  </View>
-);
-
-const styles = {
+export const styles = {
   containerStyle: {
     borderWidth: 1,
     borderRadius: 2,
@@ -23,9 +14,3 @@ const styles = {
     marginTop: 10,
   },
 };
-
-Card.propTypes = {
-  children: React.PropTypes.node,
-};
-
-export default Card;

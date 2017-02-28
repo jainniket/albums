@@ -1,8 +1,9 @@
 import React from 'react';
 import { Text, View, Image, Linking } from 'react-native';
-import Card from './Card';
-import CardSection from './CardSection';
-import Button from './Button';
+import Card from '../Card';
+import CardSection from '../CardSection';
+import Button from '../Button';
+import { styles } from './styles';
 
 const AlbumDetail = (props) => {
   const { title, artist, thumbnail_image, image, url } = props.album;
@@ -35,30 +36,6 @@ const AlbumDetail = (props) => {
 
 AlbumDetail.propTypes = {
   album: React.PropTypes.object,
-};
-
-const styles = {
-  headerContentStyle: {
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-  },
-  headerTextStyle: {
-    fontSize: 18,
-  },
-  thumbnailStyle: {
-    height: 50,
-    width: 50,
-  },
-  thumbnailContainerStyle: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 10,
-  },
-  imageStyle: {
-    height: 300,
-    flex: 1,
-    width: null,
-  },
 };
 
 export default AlbumDetail;

@@ -58,7 +58,10 @@ Albums.propTypes = {
     React.PropTypes.bool,
     React.PropTypes.object,
   ]),
-  albums: React.PropTypes.object,
+  albums: React.PropTypes.oneOfType([
+    React.PropTypes.array,
+    React.PropTypes.object,
+  ]),
   fetchAlbums: React.PropTypes.func,
 };
 

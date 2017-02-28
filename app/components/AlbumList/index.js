@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ScrollView } from 'react-native';
-import AlbumDetail from './AlbumDetail';
+import AlbumDetail from '../AlbumDetail';
 
 class AlbumList extends Component {
   renderAlbums() {
@@ -19,7 +19,10 @@ class AlbumList extends Component {
 }
 
 AlbumList.propTypes = {
-  albums: React.PropTypes.array,
+  albums: React.PropTypes.oneOfType([
+    React.PropTypes.array,
+    React.PropTypes.object,
+  ]),
 };
 
 export default AlbumList;

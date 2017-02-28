@@ -9,6 +9,7 @@ import Input from '../../components/Input';
 import Spinner from '../../components/Spinner';
 import { emailChanged, passwordChanged, loginUser } from './actions';
 import { selectEmail, selectError, selectLoading, selectPassword } from './selectors';
+import { styles } from './styles';
 
 class LoginForm extends Component {
 
@@ -65,14 +66,6 @@ class LoginForm extends Component {
     );
   }
 }
-
-const styles = {
-  errorTextStyle: {
-    fontSize: 12,
-    alignSelf: 'center',
-    color: 'red',
-  },
-};
 
 LoginForm.propTypes = {
   email: React.PropTypes.string,

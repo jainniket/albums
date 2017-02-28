@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, ActivityIndicator } from 'react-native';
+import { styles } from './styles';
 
 const Spinner = ({ size }) => (
   <View style={styles.spinnerStyle}>
@@ -8,14 +9,6 @@ const Spinner = ({ size }) => (
     />
   </View>
 );
-
-const styles = {
-  spinnerStyle: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-};
 
 Spinner.propTypes = {
   size: React.PropTypes.string,
