@@ -9,14 +9,8 @@
  * case YOUR_ACTION_CONSTANT:
  *   return state.set('yourStateVariable', true);
  */
-
 import { fromJS } from 'immutable';
-
-import {
-  ALBUMS_FETCH_SUCCEEDED,
-  ALBUMS_FETCH_REQUESTED,
-  ALBUMS_FETCH_FAILED,
-} from './constants';
+import { ALBUMS_FETCH_SUCCEEDED, ALBUMS_FETCH_REQUESTED, ALBUMS_FETCH_FAILED } from './constants';
 
 const INITIAL_STATE = fromJS({
   albumList: [],

@@ -1,15 +1,16 @@
-import React, { Component } from 'react'
-import AlbumList from '../../components/AlbumList'
-import Button from '../../components/Button'
-import CardSection from '../../components/CardSection'
-import { View } from 'react-native'
-import { connect } from 'react-redux'
-import firebase from 'firebase'
-import { fetchAlbum } from './actions'
-import { Actions } from 'react-native-router-flux'
-import Spinner from '../../components/Spinner'
-import { createStructuredSelector } from 'reselect'
-import { selectAlbumList, selectError, selectLoading } from './selectors'
+import React, { Component } from 'react';
+import { View, Text } from 'react-native';
+import { connect } from 'react-redux';
+import firebase from 'firebase';
+import { Actions } from 'react-native-router-flux';
+import { createStructuredSelector } from 'reselect';
+import AlbumList from '../../components/AlbumList';
+import Button from '../../components/Button';
+import CardSection from '../../components/CardSection';
+import { fetchAlbum } from './actions';
+import Spinner from '../../components/Spinner';
+import { selectAlbumList, selectError, selectLoading } from './selectors';
+import styles from './styles';
 
 class Albums extends Component {
   componentWillMount() {
@@ -23,7 +24,7 @@ class Albums extends Component {
 
   renderAlbums() {
     if (this.props.loading) {
-      return <Spinner size="large" />
+      return <Spinner size='large' />;
     } else if (this.props.error) {
       return (<Text style={styles.errorTextStyle}>
         {this.props.error}
@@ -31,7 +32,7 @@ class Albums extends Component {
     } else {
       return (
         <AlbumList albums={this.props.albums} />
-      )
+      );
     }
   }
 
@@ -50,6 +51,16 @@ class Albums extends Component {
     );
   }
 }
+
+Albums.propTypes = {
+  loading: React.PropTypes.bool,
+  error: React.PropTypes.oneOfType([
+    React.PropTypes.bool,
+    React.PropTypes.object,
+  ]),
+  albums: React.PropTypes.object,
+  fetchAlbums: React.PropTypes.func,
+};
 
 const mapStateToProps = createStructuredSelector({
   albums: selectAlbumList(),

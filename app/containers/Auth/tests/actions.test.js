@@ -1,10 +1,5 @@
-import {
-  EMAIL_CHANGED,
-} from '../constants';
-
-import {
-  emailChanged,
-} from '../actions';
+import { EMAIL_CHANGED } from '../constants';
+import { emailChanged } from '../actions';
 
 describe('Auth Actions', () => {
   describe('emailChanged', () => {

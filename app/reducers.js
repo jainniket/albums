@@ -1,10 +1,6 @@
 // import { combineReducers } from 'redux'
-import { fromJS } from 'immutable'
+import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
-
-// const initialState = {
-//   scene: {},
-// };
 
 // Initial routing state
 const routeInitialState = fromJS({
@@ -17,7 +13,7 @@ const routeInitialState = fromJS({
  */
 function routeReducer(state = routeInitialState, action) {
   switch (action.type) {
-    case "focus":
+    case 'focus':
       return state.merge({ scene: action.scene });
     default:
       return state;

@@ -82,7 +82,7 @@
       "beforeColon": false,
       "afterColon": true
     }],
-    "max-nested-callbacks": [2, 2],
+    "max-nested-callbacks": [2, 3],
     "new-cap": 0,
     "new-parens": 2,
     "no-mixed-spaces-and-tabs": 2,
@@ -183,7 +183,7 @@
     "react/prop-types": 1,
     "react/react-in-jsx-scope": 1,
     "react/sort-comp": 1,
-    "react/wrap-multilines": 1,
+    "react/jsx-wrap-multilines": 1,
     "react/forbid-prop-types": 0,
     "react/jsx-first-prop-new-line": [
       2,
@@ -193,9 +193,7 @@
     "react/jsx-no-target-blank": 0,
     "react/require-extension": 0,
     "react/self-closing-comp": 0,
-    "babel/generator-star-spacing": 1,
     "babel/new-cap": 0,
-    "babel/object-shorthand": 1,
     "babel/arrow-parens": 0,
     "babel/no-await-in-loop": 1
   }

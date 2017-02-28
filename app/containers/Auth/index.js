@@ -1,36 +1,36 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Text } from 'react-native';
-import Custom from '../../components/Button';
+import { createStructuredSelector } from 'reselect';
+import Button from '../../components/Button';
 import Card from '../../components/Card';
 import CardSection from '../../components/CardSection';
 import Input from '../../components/Input';
 import Spinner from '../../components/Spinner';
-import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from './actions';
-import { createStructuredSelector } from 'reselect';
 import { selectEmail, selectError, selectLoading, selectPassword } from './selectors';
 
 class LoginForm extends Component {
 
-  onButtonPress() {
+  onEmailChange = (text) => {
+    this.props.emailChanged(text);
+  };
+
+  onPasswordChange = (text) => {
+    this.props.passwordChanged(text);
+  };
+
+  loginButtonPressed = () => {
     const { email, password } = this.props;
     this.props.loginUser(email, password);
-  }
+  };
 
   renderButton() {
     if (this.props.loading) {
-      return <Spinner size="small" />;
+      return <Spinner size='small' />;
     }
 
-    return (<Custom onPress={this.onButtonPress.bind(this)}>Login</Custom>);
-  }
-
-  onEmailChange(text) {
-    this.props.emailChanged(text);
-  }
-
-  onPasswordChange(text) {
-    this.props.passwordChanged(text);
+    return (<Button onPress={this.loginButtonPressed}>Login</Button>);
   }
 
   render() {
@@ -38,21 +38,21 @@ class LoginForm extends Component {
       <Card>
         <CardSection>
           <Input
-            placeholder="user@gmail.com"
+            placeholder='user@gmail.com'
             autoCorrect={false}
-            label="Email"
+            label='Email'
             value={this.props.email}
-            onChangeText={this.onEmailChange.bind(this)}
+            onChangeText={this.onEmailChange}
           />
         </CardSection>
         <CardSection>
           <Input
             secureTextEntry
-            placeholder="password"
+            placeholder='password'
             autoCorrect={false}
-            label="Password"
+            label='Password'
             value={this.props.password}
-            onChangeText={this.onPasswordChange.bind(this)}
+            onChangeText={this.onPasswordChange}
           />
         </CardSection>
         <Text style={styles.errorTextStyle}>
@@ -72,6 +72,19 @@ const styles = {
     alignSelf: 'center',
     color: 'red',
   },
+};
+
+LoginForm.propTypes = {
+  email: React.PropTypes.string,
+  password: React.PropTypes.string,
+  loading: React.PropTypes.bool,
+  error: React.PropTypes.oneOfType([
+    React.PropTypes.object,
+    React.PropTypes.bool,
+  ]),
+  loginUser: React.PropTypes.func,
+  emailChanged: React.PropTypes.func,
+  passwordChanged: React.PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({

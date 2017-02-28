@@ -4,9 +4,16 @@
   "description": "A highly scalable and a focus on performance and best practices",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest",
     "flow": "flow --show-all-errors",
-    "lint-staged": "lint-staged"
+    "lint": "npm run lint:js",
+    "lint:eslint": "eslint",
+    "lint:js": "npm run lint:eslint .",
+    "lint-staged": "lint-staged",
+    "pretest": "npm run test:clean && npm run lint",
+    "test": "NODE_ENV=test jest --coverage",
+    "test:watch": "cross-env NODE_ENV=test jest --watchAll",
+    "test:clean": "rimraf ./coverage",
+    "npmcheckversion": "node ./internals/scripts/npmcheckversion.js"
   },
   "lint-staged": {
     "*.js": "lint:eslint"
@@ -40,7 +47,7 @@
     "babel-preset-react-native": "^1.9.1",
     "eslint": "^3.16.1",
     "eslint-config-airbnb": "^13.0.0",
-    "eslint-plugin-babel": "^4.0.1",
+    "eslint-plugin-babel": "^4.1.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.10.0",

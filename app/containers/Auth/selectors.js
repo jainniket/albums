@@ -1,7 +1,6 @@
 /**
  * The auth state selectors
  */
-
 import { createSelector } from 'reselect';
 
 const selectAuth = (state) => state.get('auth');

@@ -1,7 +1,6 @@
 /**
  * The albums state selectors
  */
-
 import { createSelector } from 'reselect';
 
 const selectAlbums = (state) => state.get('albums');

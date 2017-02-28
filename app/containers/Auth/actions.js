@@ -14,37 +14,25 @@
  *        return { type: YOUR_ACTION_CONSTANT, var: var }
  *    }
  */
-
-import {
-    EMAIL_CHANGED,
-    PASSWORD_CHANGED,
-    PASSWORD_CLEAR,
-    USER_LOGIN_REQUESTED,
-} from './constants';
+import { EMAIL_CHANGED, PASSWORD_CHANGED, USER_LOGIN_REQUESTED } from './constants';
 
 export function emailChanged(email) {
-    return {
-        type: EMAIL_CHANGED,
-        payload: email,
-    };
+  return {
+    type: EMAIL_CHANGED,
+    payload: email,
+  };
 }
 
 export function passwordChanged(password) {
-    return {
-        type: PASSWORD_CHANGED,
-        payload: password,
-    };
-}
-
-export function passwordClear() {
-    return {
-        type: PASSWORD_CLEAR,
-    };
+  return {
+    type: PASSWORD_CHANGED,
+    payload: password,
+  };
 }
 
 export function loginUser(email, password) {
-    return {
-        type: USER_LOGIN_REQUESTED,
-        payload: { email, password },
-    };
+  return {
+    type: USER_LOGIN_REQUESTED,
+    payload: { email, password },
+  };
 }

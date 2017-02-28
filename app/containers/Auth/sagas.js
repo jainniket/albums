@@ -1,7 +1,7 @@
-import { call, put, takeLatest, take, cancel } from 'redux-saga/effects'
-import { USER_LOGIN_REQUESTED, USER_LOGIN_FAILED, USER_LOGIN_SUCCEEDED, PASSWORD_CLEAR } from './constants'
-import firebase from 'firebase'
-import { Actions, ActionConst } from 'react-native-router-flux'
+import { call, put, takeLatest } from 'redux-saga/effects';
+import firebase from 'firebase';
+import { Actions } from 'react-native-router-flux';
+import { USER_LOGIN_REQUESTED, USER_LOGIN_FAILED, USER_LOGIN_SUCCEEDED, PASSWORD_CLEAR } from './constants';
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* authentication(action) {
@@ -26,7 +26,7 @@ function* authenticateUser() {
   // By using `takeLatest` only the result of the latest API call is applied.
   // It returns task descriptor (just like fork) so we can continue execution.
 
-  const watcher = yield takeLatest(USER_LOGIN_REQUESTED, authentication);
+  yield takeLatest(USER_LOGIN_REQUESTED, authentication);
 
   // Suspend execution until location changes
   // yield take(ActionConst.PUSH);

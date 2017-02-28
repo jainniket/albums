@@ -14,10 +14,7 @@
  *        return { type: YOUR_ACTION_CONSTANT, var: var }
  *    }
  */
-
-import {
-  ALBUMS_FETCH_REQUESTED,
-} from './constants';
+import { ALBUMS_FETCH_REQUESTED } from './constants';
 
 export function fetchAlbum() {
   return {
