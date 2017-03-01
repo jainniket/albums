@@ -17,10 +17,10 @@ class Albums extends Component {
     this.props.fetchAlbums();
   }
 
-  handleLogOut() {
+  handleLogOut = () => {
     firebase.auth().signOut();
     Actions.auth();
-  }
+  };
 
   renderAlbums() {
     if (this.props.loading) {
