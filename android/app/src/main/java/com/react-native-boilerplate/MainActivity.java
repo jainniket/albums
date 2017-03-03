@@ -1,4 +1,4 @@
-package com.albums;
+package com.react-native-boilerplate;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "albums";
+        return "react-native-boilerplate";
     }
 }
