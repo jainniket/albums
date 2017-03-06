@@ -10,6 +10,7 @@ import Spinner from '../../components/Spinner';
 import { emailChanged, passwordChanged, loginUser } from './actions';
 import { selectEmail, selectError, selectLoading, selectPassword } from './selectors';
 import { styles } from './styles';
+import KitLauncher from '../../native_modules/android/KitPlayer';
 
 class LoginForm extends Component {
 
@@ -35,6 +36,7 @@ class LoginForm extends Component {
   }
 
   render() {
+    KitLauncher.show('niket');
     return (
       <Card>
         <CardSection>
