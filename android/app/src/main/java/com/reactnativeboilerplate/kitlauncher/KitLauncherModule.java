@@ -27,8 +27,6 @@ public class KitLauncherModule extends ReactContextBaseJavaModule {
         super(reactContext);
     }
 
-    private static final String TAG = "MyActivity";
-
     @ReactMethod
     public void show(String message) {
         HooqAgent.createInstance(getCurrentActivity().getApplicationContext(), "QP_Config.json");
