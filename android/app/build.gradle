@@ -86,6 +86,12 @@ android {
     compileSdkVersion 23
     buildToolsVersion '25.0.0'
 
+    dexOptions {
+        javaMaxHeapSize "4g"
+        jumboMode = true
+        preDexLibraries = false
+    }
+
     defaultConfig {
         applicationId "com.reactnativeboilerplate"
         minSdkVersion 16

@@ -1,9 +1,12 @@
 package com.reactnativeboilerplate.kitlauncher;
 
 
+import android.content.Intent;
 import android.os.Build;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.facebook.react.bridge.NativeModule;
@@ -24,10 +27,12 @@ public class KitLauncherModule extends ReactContextBaseJavaModule {
         super(reactContext);
     }
 
+    private static final String TAG = "MyActivity";
+
     @ReactMethod
     public void show(String message) {
+        HooqAgent.createInstance(getCurrentActivity().getApplicationContext(), "QP_Config.json");
         Toast.makeText(getReactApplicationContext(), message, Toast.LENGTH_LONG).show();
-        HooqAgent.createInstance(getReactApplicationContext(), "QP_Config.json");
     }
 
     @Override
