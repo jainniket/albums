@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import 'babel-polyfill';
 import { Provider } from 'react-redux';
 import firebase from 'firebase';
 import Routes from './routes';
