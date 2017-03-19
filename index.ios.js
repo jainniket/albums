@@ -3,4 +3,4 @@
 import { AppRegistry } from 'react-native';
 import App from './app/app';
 
-AppRegistry.registerComponent('albums', () => App);
+AppRegistry.registerComponent('reactNativeBoilerplate', () => App);
