@@ -1,6 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import firebase from 'firebase';
-import { Actions } from 'react-native-router-flux';
 import { USER_LOGIN_REQUESTED, USER_LOGIN_FAILED, USER_LOGIN_SUCCEEDED, PASSWORD_CLEAR } from './constants';
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
@@ -9,7 +8,7 @@ function* authentication(action) {
     const response = yield call([firebase.auth(), firebase.auth().signInWithEmailAndPassword], action.payload.email, action.payload.password);
     yield put({ type: USER_LOGIN_SUCCEEDED, user: response });
     yield put({ type: PASSWORD_CLEAR });
-    Actions.albums();
+    action.navigation.navigate('Albums');
   } catch (e) {
     yield put({ type: USER_LOGIN_FAILED, error: e });
     yield put({ type: PASSWORD_CLEAR });
@@ -27,7 +26,6 @@ function* authenticateUser() {
   // It returns task descriptor (just like fork) so we can continue execution.
 
   yield takeLatest(USER_LOGIN_REQUESTED, authentication);
-
   // Suspend execution until location changes
   // yield take(ActionConst.PUSH);
   // yield cancel(watcher);

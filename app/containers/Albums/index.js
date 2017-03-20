@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
-import { Actions } from 'react-native-router-flux';
 import { createStructuredSelector } from 'reselect';
 import AlbumList from '../../components/AlbumList';
 import Button from '../../components/Button';
@@ -19,7 +18,7 @@ class Albums extends Component {
 
   handleLogOut = () => {
     firebase.auth().signOut();
-    Actions.auth();
+    this.props.navigation.goBack(null);
   };
 
   renderAlbums() {
@@ -54,6 +53,7 @@ class Albums extends Component {
 
 Albums.propTypes = {
   loading: React.PropTypes.bool,
+  navigation: React.PropTypes.object,
   error: React.PropTypes.oneOfType([
     React.PropTypes.bool,
     React.PropTypes.object,

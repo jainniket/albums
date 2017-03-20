@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { Provider } from 'react-redux';
 import firebase from 'firebase';
-import Routes from './routes';
+import AppWithNavigationState from './routes';
 import configureStore from './store';
 
 // Needed for redux-saga es6 generator support
@@ -47,7 +47,8 @@ class App extends Component {
       <Provider store={store}>
         <View style={{ flex: 1 }}>
           {/*<StatusBar barStyle='light-content' />*/}
-          <Routes store={store} />
+          {/*<Routes store={store} />*/}
+          <AppWithNavigationState store={store} />
         </View>
       </Provider>
     );

@@ -24,7 +24,6 @@ function* albumData() {
   // By using `takeLatest` only the result of the latest API call is applied.
   // It returns task descriptor (just like fork) so we can continue execution
   yield takeLatest(ALBUMS_FETCH_REQUESTED, fetchAlbums);
-
   // Suspend execution until location changes
 }
 
