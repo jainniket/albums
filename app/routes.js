@@ -31,11 +31,11 @@ class AppWithNavigationState extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+function mapStateToProps(state) {
   return {
     nav: state.get('nav'),
   };
-};
+}
 
 AppWithNavigationState.propTypes = {
   store: React.PropTypes.object,

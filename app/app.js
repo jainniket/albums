@@ -25,8 +25,8 @@ const initialState = {};
 const store = configureStore(initialState);
 
 class App extends Component {
-
-  componentWillMount() {
+  constructor(props) {
+    super(props);
     firebase.initializeApp({
       apiKey: 'AIzaSyC1o1y2MXqCxFLcMNItidCTwNHhNqaOlzI',
       authDomain: 'authentication-30454.firebaseapp.com',
