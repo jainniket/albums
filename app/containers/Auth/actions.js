@@ -30,9 +30,10 @@ export function passwordChanged(password) {
   };
 }
 
-export function loginUser(email, password) {
+export function loginUser(email, password, navigation) {
   return {
     type: USER_LOGIN_REQUESTED,
     payload: { email, password },
+    navigation,
   };
 }

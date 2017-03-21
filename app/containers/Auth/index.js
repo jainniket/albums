@@ -22,8 +22,8 @@ class LoginForm extends Component {
   };
 
   loginButtonPressed = () => {
-    const { email, password } = this.props;
-    this.props.loginUser(email, password);
+    const { email, password, navigation } = this.props;
+    this.props.loginUser(email, password, navigation);
   };
 
   renderButton() {
@@ -69,6 +69,7 @@ class LoginForm extends Component {
 
 LoginForm.propTypes = {
   email: React.PropTypes.string,
+  navigation: React.PropTypes.object,
   password: React.PropTypes.string,
   loading: React.PropTypes.bool,
   error: React.PropTypes.oneOfType([
@@ -91,7 +92,7 @@ function mapDispatchToProps(dispatch) {
   return {
     emailChanged: (email) => dispatch(emailChanged(email)),
     passwordChanged: (password) => dispatch(passwordChanged(password)),
-    loginUser: (email, password) => dispatch(loginUser(email, password)),
+    loginUser: (email, password, navigation) => dispatch(loginUser(email, password, navigation)),
     dispatch,
   };
 }

@@ -1,54 +1,69 @@
 import React, { Component } from 'react';
-import { Scene, Router, Reducer } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import Login from './containers/Auth';
-import Albums from './containers/Albums';
+import { addNavigationHelpers, StackNavigator } from 'react-navigation';
 import { getAsyncInjectors } from './utils/asyncInjectors';
 import authReducer from './containers/Auth/reducer';
 import authSaga from './containers/Auth/sagas';
-import albumReducer from './containers/Albums/reducer';
-import albumSaga from './containers/Albums/sagas';
+import auth from './containers/Auth';
+import albumsReducer from './containers/Albums/reducer';
+import albumsSaga from './containers/Albums/sagas';
+import albums from './containers/Albums';
 
-class Routes extends Component {
-
-  reducerCreate = (params) => {
-    const defaultReducer = Reducer(params);
-    return (state, action) => {
-      this.props.dispatch(action);
-      return defaultReducer(state, action);
-    };
-  };
-
-  renderAuth() {
+class AppWithNavigationState extends Component {
+  constructor(props) {
+    super(props);
     const { injectReducer, injectSagas } = getAsyncInjectors(this.props.store);
     injectReducer('auth', authReducer);
     injectSagas(authSaga);
-    injectReducer('albums', albumReducer);
-    injectSagas(albumSaga);
+    injectReducer('albums', albumsReducer);
+    injectSagas(albumsSaga);
   }
 
   render() {
     return (
-      <Router
-        createReducer={this.reducerCreate}
-        sceneStyle={{ paddingTop: 65 }}
-      >
-        <Scene key='auth'>
-          <Scene key='login' component={Login} title='Login'>
-            {this.renderAuth()}
-          </Scene>
-        </Scene>
-        <Scene key='albums'>
-          <Scene key='albumList' component={Albums} title='Albums' />
-        </Scene>
-      </Router>
+      <AppNavigator
+        navigation={addNavigationHelpers({
+          dispatch: this.props.dispatch,
+          state: this.props.nav,
+        })}
+      />
     );
   }
 }
 
-Routes.propTypes = {
+function mapStateToProps(state) {
+  return {
+    nav: state.get('nav'),
+  };
+}
+
+AppWithNavigationState.propTypes = {
   store: React.PropTypes.object,
   dispatch: React.PropTypes.func,
+  nav: React.PropTypes.object,
 };
 
-export default connect()(Routes);
+export default connect(mapStateToProps)(AppWithNavigationState);
+
+export const navReducer = (state, action) => {
+  const newState = AppNavigator.router.getStateForAction(action, state);
+  return newState || state;
+};
+
+export const AppNavigator = StackNavigator({
+  Home: {
+    screen: auth,
+    navigationOptions: {
+      title: 'Authentication',
+    },
+  },
+  Albums: {
+    screen: albums,
+    navigationOptions: {
+      title: 'Albums',
+      header: {
+        left: null,
+      },
+    },
+  },
+});
